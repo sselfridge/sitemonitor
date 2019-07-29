@@ -40,7 +40,7 @@ function main() {
   pingServer()
     .then(() => {
       const date = new Date();
-      console.log("All good", date.toDateString());
+      console.log(`All good, ${date.toDateString()} ${date.toLocaleTimeString()}`);
       setTimeout(main, 3600000); //check every hour
     })
     .catch(() => {
