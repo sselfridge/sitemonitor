@@ -1,9 +1,10 @@
-// const express = require("express");
-// const app = express();
-
 const config = require("./config/site_keys");
 const twilio = require("twilio")(config.accountSid, config.authToken);
 const request = require("request");
+
+var baseRequest = request.defaults({
+  headers: { "User-Agent": "SiteCheck" }
+});
 
 function sendMessage() {
   twilio.messages.create(
@@ -25,9 +26,8 @@ function sendMessage() {
 
 function pingServer() {
   return new Promise((resolve, reject) => {
-    request("http://www.mapper.bike", function(error, response, body) {
+    baseRequest("http://www.mapper.bike", function(error, response, body) {
       if (error || response.statusCode !== 200) {
-        sendMessage();
         reject();
       } else {
         resolve();
