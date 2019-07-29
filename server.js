@@ -39,7 +39,8 @@ function pingServer() {
 function main() {
   pingServer()
     .then(() => {
-      console.log("All good");
+      const date = new Date();
+      console.log("All good", date.toDateString());
       setTimeout(main, 3600000); //check every hour
     })
     .catch(() => {
