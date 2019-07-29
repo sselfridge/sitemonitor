@@ -40,7 +40,7 @@ function main() {
   pingServer()
     .then(() => {
       console.log("All good");
-      setTimeout(main, 10000);
+      setTimeout(main, 3600000); //check every hour
     })
     .catch(() => {
       sendMessage();
